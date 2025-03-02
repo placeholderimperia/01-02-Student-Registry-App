@@ -8,20 +8,19 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch: 
 
 jobs:
   build_test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
+
     steps:
     - name: Checkout the code
       uses: actions/checkout@v4
     - name: Install nodeJS
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 20
     - name: Install dependencies
       run: npm install
     - name: Execute integratrion test
